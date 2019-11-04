@@ -1,0 +1,8 @@
+RemoteSystemsTempFiles/
+.recommenders/
+.metadata/
+# .gitignore
+Servers/
+.settings/
+target/
+osgi.appserver/src/main/webapp/WEB-INF/engine/*.zip

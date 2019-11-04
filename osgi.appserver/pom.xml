@@ -1,0 +1,91 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.osgi.bridge</groupId>
+	<artifactId>osgi.appserver</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>brige_container Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+		</dependency>
+	
+		<!-- https://mvnrepository.com/artifact/org.eclipse.equinox/servletbridge -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.eclipse.equinox</groupId> -->
+		<!-- <artifactId>servletbridge</artifactId> -->
+		<!-- <version>1.0.0-v20070523</version> -->
+		<!-- <scope>system</scope> -->
+		<!-- <systemPath>${basedir}/src/main/webapp/WEB-INF/lib/servletbridge.jar</systemPath> -->
+		<!-- </dependency> -->
+	
+		<dependency>
+			<groupId>org.crossbridge</groupId>
+			<artifactId>class_launcher</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
+		
+		<dependency>
+			<groupId>com.ziputil</groupId>
+			<artifactId>ziputils</artifactId>
+			<version>1.0.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/ziputil.jar</systemPath>
+		</dependency>
+
+	</dependencies>
+    
+
+	<build>
+		<finalName>brige_container</finalName>
+		<plugins>
+		    <plugin>  
+	            <groupId>org.apache.maven.plugins</groupId>  
+	            <artifactId>maven-dependency-plugin</artifactId>  
+	            <version>2.8</version>  
+	            <executions>  
+	                <execution>  
+	                    <phase>prepare-package</phase>  
+	                    <goals>  
+	                        <goal>copy</goal>  
+	                    </goals>
+	                    <configuration>
+	                        <artifactItems>
+	                            <artifactItem>
+	                                <groupId>org.crossbridge</groupId>
+									<artifactId>osgi-engine-3.5.1</artifactId>
+									<version>1.0.0</version>
+									<type>zip</type>
+									<!-- to src instead of target, otherwise it won't be deployed while running in IDE -->
+						            <outputDirectory>${basedir}/src/main/webapp/WEB-INF/engine</outputDirectory>
+	                            </artifactItem>
+	                            <artifactItem>
+									 <groupId>org.crossbridge</groupId>
+									 <artifactId>osgi-engine-3.12.100</artifactId>
+									 <version>1.0.0-SNAPSHOT</version>
+									 <type>zip</type>
+						            <outputDirectory>${basedir}/src/main/webapp/WEB-INF/engine</outputDirectory>
+	                            </artifactItem>
+	                        </artifactItems>
+                    </configuration>
+	                      
+	                </execution>  
+	            </executions>  
+	        </plugin>		
+		</plugins>
+	</build>
+</project>
